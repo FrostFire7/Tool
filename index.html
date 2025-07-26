@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolKit Pro | All-in-One Online Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --primary-dark: #5649c0;
+            --secondary: #00b894;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --lighter: #ffffff;
+            --gray: #636e72;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.05);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--lighter);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary);
+            color: var(--lighter);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .login-btn:hover {
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+
+        .signup-btn {
+            background-color: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+        }
+
+        .signup-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background-color: var(--lighter);
+            color: var(--dark);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(108, 92, 231, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features {
+            padding: 4rem 0;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background-color: var(--lighter);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tool-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.75rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .tool-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .tool-link:hover {
+            color: var(--primary-dark);
+            gap: 0.75rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 0;
+            background-color: var(--lighter);
+        }
+
+        .steps {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -30px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--lighter);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-light);
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Call to Action */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* AdMob Banner */
+        .ad-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .ad-banner {
+            max-width: 728px;
+            height: 90px;
+            margin: 0 auto;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .close-btn:hover {
+            color: var(--dark);
+        }
+
+        .modal h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .form-footer {
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .auth-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+
+            .step {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">T</div>
+                <span class="logo-text">ToolKit Pro</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Tools</a>
+                <a href="#" class="nav-link">Features</a>
+                <div class="auth-buttons">
+                    <a href="#" class="auth-btn login-btn" id="loginBtn">Log In</a>
+                    <a href="#" class="auth-btn signup-btn" id="signupBtn">Sign Up</a>
+                </div>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>All Your Essential Tools in One Place</h1>
+            <p>ToolKit Pro offers a comprehensive suite of online tools to simplify your work and boost productivity. From image editing to document conversion, we've got you covered.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Get Started
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdMob Banner -->
+    <div class="ad-container">
+        <div class="ad-banner">
+            AdMob Banner Ad
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Powerful Tools</h2>
+                <p>Discover our collection of essential tools designed to make your digital life easier</p>
+            </div>
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3>Image Compressor</h3>
+                    <p>Reduce image file size without losing quality. Perfect for websites and social media.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 2 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3>Image Resizer</h3>
+                    <p>Resize your images to any dimension while maintaining aspect ratio and quality.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 3 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>PDF Converter</h3>
+                    <p>Convert documents to and from PDF format with just a few clicks.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 4 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Translator</h3>
+                    <p>Translate text between multiple languages with high accuracy.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 5 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Converter</h3>
+                    <p>Convert videos between different formats for any device or platform.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 6 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Password Generator</h3>
+                    <p>Create strong, secure passwords to protect your online accounts.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 7 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>QR Code Generator</h3>
+                    <p>Generate QR codes for URLs, contact info, WiFi credentials and more.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Tool 8 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Code Formatter</h3>
+                    <p>Format and beautify your code with support for multiple programming languages.</p>
+                    <a href="#" class="tool-link">
+                        Try Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdMob Banner -->
+    <div class="ad-container">
+        <div class="ad-banner">
+            AdMob Banner Ad
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Using our tools is simple and straightforward. Just follow these easy steps</p>
+            </div>
+            <div class="steps">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Select Your Tool</h3>
+                    <p>Choose from our wide range of specialized tools designed for your needs.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Upload or Input</h3>
+                    <p>Upload your files or input the data you want to process with the tool.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Process & Download</h3>
+                    <p>Let our tool do the work and download your processed files instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Don't just take our word for it. Here's what our users have to say about ToolKit Pro</p>
+            </div>
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        ToolKit Pro has saved me countless hours of work. The image compressor is the best I've used - it maintains quality while reducing file size dramatically.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah Johnson" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Graphic Designer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        As a developer, I use multiple tools daily. Having them all in one place with ToolKit Pro has streamlined my workflow significantly.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The PDF converter works flawlessly every time. It's become an essential part of my document management process.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily Rodriguez" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Office Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Boost Your Productivity?</h2>
+            <p>Join thousands of satisfied users who are already saving time with ToolKit Pro. Get started today - it's free!</p>
+            <a href="#" class="btn btn-primary" style="background-color: white; color: var(--primary);">
+                <i class="fas fa-sign-in-alt"></i> Sign Up Now
+            </a>
+        </div>
+    </section>
+
+    <!-- AdMob Banner -->
+    <div class="ad-container">
+        <div class="ad-banner">
+            AdMob Banner Ad
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Log In</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="form-submit">Log In</button>
+                <div class="form-footer">
+                    Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                </div>
+                <button type="submit" class="form-submit">Sign Up</button>
+                <div class="form-footer">
+                    Already have an account? <a href="#" id="switchToLogin">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // Modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const closeBtns = document.querySelectorAll('.close-btn');
+        const switchToSignup = document.getElementById('switchToSignup');
+        const switchToLogin = document.getElementById('switchToLogin');
+
+        // Show login modal
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'block';
+            signupModal.style.display = 'none';
+        });
+
+        // Show signup modal
+        signupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'block';
+            loginModal.style.display = 'none';
+        });
+
+        // Close modals
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                signupModal.style.display = 'none';
+            });
+        });
+
+        // Switch between login and signup
+        switchToSignup.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'block';
+        });
+
+        switchToLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'none';
+            loginModal.style.display = 'block';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Here you would typically send this data to your backend
+            console.log('Login attempt with:', email, password);
+            
+            // For demo purposes, just show an alert and close the modal
+            alert('Login successful! (This is a demo)');
+            loginModal.style.display = 'none';
+            
+            // In a real app, you would handle the login response here
+            // and update the UI accordingly (show user's name, etc.)
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Here you would typically send this data to your backend
+            console.log('Signup attempt with:', name, email, password);
+            
+            // For demo purposes, just show an alert and close the modal
+            alert('Account created successfully! (This is a demo)');
+            signupModal.style.display = 'none';
+            
+            // In a real app, you might automatically log the user in
+            // or redirect them to a welcome page
+        });
+
+        // AdMob integration (this would be replaced with actual AdMob code)
+        // For a real implementation, you would use the AdMob SDK
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AdMob (this is just a placeholder)
+            console.log('AdMob would be initialized here');
+            
+            // In a real app, you would have code like:
+            // admob.initialize().then(() => admob.banner.show('banner-ad'));
+        });
+
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const toolCards = document.querySelectorAll('.tool-card');
+            const steps = document.querySelectorAll('.step');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            function animateOnScroll() {
+                toolCards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                steps.forEach(step => {
+                    const stepPosition = step.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (stepPosition < screenPosition) {
+                        step.style.opacity = '1';
+                        step.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                testimonialCards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Set initial state
+            toolCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+            
+            steps.forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(20px)';
+                step.style.transition = 'all 0.6s ease 0.2s';
+            });
+            
+            testimonialCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease 0.4s';
+            });
+            
+            // Run on load and scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
